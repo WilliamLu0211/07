@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct node { int i; struct node *next };
+struct node { int i; struct node *next; };
 
 void print_list(struct node *head){
 
-  if (*head == NULL)
-    printf("NULL");
+  if (head == NULL)
+    printf("NULL\n");
   else{
     printf("%d -> ", head->i);
     print_list(head->next);
@@ -14,7 +14,7 @@ void print_list(struct node *head){
   
 }
 
-struct node * insert_front(Struct node *head, int x){
+struct node * insert_front(struct node *head, int x){
 
   struct node *new_node = malloc( sizeof(struct node) );;
   new_node->i = x;
@@ -25,9 +25,11 @@ struct node * insert_front(Struct node *head, int x){
 
 struct node * free_list(struct node *head){
 
-  struct node *p = head;
-  while (*p != NULL)
-    free(p);
+  //print_list(head);
+  if (head != NULL){
+    free(head);
+    free_list( head->next );
+  }
   
-  return head;
+  return NULL;
 }

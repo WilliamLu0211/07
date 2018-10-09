@@ -1,5 +1,7 @@
-void print_list(struct node *);
+struct node { int i; struct node *next; };
 
-struct node * insert_front(Struct node *, int);
+void print_list(struct node *head);
 
-struct node * free_list(struct node *);
+struct node * insert_front(struct node *head, int);
+
+struct node * free_list(struct node *head);
